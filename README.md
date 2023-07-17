@@ -11,54 +11,41 @@ There are a couple of challenges when it comes to using git (or version control 
 
 The initial setup for a project requires a few steps, but you only have to do it once per project. To set up a Unity project with Git and Git LFS:
 
-### Preparing your Computer
+### Preparing
 
-- Create a [GitHub account](https://github.com/join).
 - Install the required software on your machine:
   - [Unity](https://unity.com/).
-  - [GitHub Desktop](https://desktop.github.com/).
-  - [Git LFS](https://git-lfs.github.com).
-  - If you are in the IAM labs/classrooms, these should be installed. You may need to open the software center to activate GitHub Desktop.
-- Open up GitHub Desktop and login in with your GitHub account.
+  - [Git](https://git-scm.com/).
+  - [Git LFS](https://git-lfs.com).
 
 ### Creating the Repository
 
-You can watch a video of this process [here](https://colum2.instructuremedia.com/embed/de36691b-707a-4877-910c-e25b0f0d45aa), or follow along below:
-
-- Create a new repository for your project from GitHub Desktop:
-  - `File > New Repository` or `CTRL + N`.
-  - Give it a name and choose the local path where it will be created. (If you are in an IAM lab/classroom, do NOT put it on the network home drive AKA z drive.)
-- Add the .gitignore and .gitattributes:
-  - [Download the files](https://github.com/mikewesthad/unity-git-and-lfs/archive/master.zip) from this repo.
-  - Unzip the files and copy over the .gitignore and .gitattributes files to your git repository.
-  - Create a commit from GitHub Desktop with those two files.
-  - It's important that you do this step first before adding any Unity project files.
-- Set up Git LFS:
-  - Navigate to your repository and run `git lfs install` in your command prompt/terminal. If you have your repository selected in GitHub Desktop, you can click `Repository > Open in Command Prompt` from the toolbar to open up a terminal window. Type in `git lfs install` and hit enter. You should see a message like "Git LFS initialized".
-- Add your Unity project to the repository:
-  - Create a new Unity project or grab an existing project.
-  - Open up your Unity project folder in file explorer/finder. It's the folder that contains "Assets/", "ProjectSettings/", "Packages/", etc. In other words, select the folder one directory up from "Assets/". One quick way to get there from Unity, right click on "Assets" in your Project window and select "Show in Explorer".
-  - Copy all the contents of your project folder into your repository (e.g. "Assets/", "ProjectSettings/", etc.).
-- Make a commit of the project:
-  - Head back to GitHub desktop.
-  - Select your files and make a commit.
-- Publish your repository:
-  - Head to GitHub Desktop and select your repository.
-  - Click the "Publish repository" button near the top of the screen.
-  - If you are creating this repository for a project in class, uncheck "Keep this code private".
-  - Click "Publish repository".
-  - Whew! It's live now. You go straight to where it is stored on GitHub via `Repository > View on GitHub` in the GitHub Desktop toolbar.
+1. Create a new repository for your project from GitHub:
+    1. Create from this template: `Use this template > Create a new repository`
+    2. Give it a name.
+    3. Update README.md after creating.
+2. Add your Unity project to the repository:
+    1. Create a new Unity project or grab an existing project.
+    2. Open up your Unity project folder in your command prompt/terminal.
+    3. Create a local git repository and connect it to a previosly created repository from Github
+        ``` bash
+        git init
+        git branch -M main # if local default branch is not main
+        git remote add origin git@github.com:youruser/yourrepo.git
+        git fetch origin
+        git reset --hard origin/master
+        git fetch git@github.com:youruser/yourrepo.git main:origin/main
+        git checkout main 
+        ```
+    It is important that the name of the branch in the local repository and the name of the branch in the repository from GitHub are the same
+3. Set up Git LFS (only once):
+    - Navigate to your repository and run `git lfs install` in your command prompt/terminal. You should see a message like "Git LFS initialized".
+4. Push your project:
+    1. Add all files: `git add .`
+    2. Make commit: `git commit -m 'init commit'`
+    3. First push: `git push --set-upstream origin main`
 
 Now that the repository is all set up, you can simply commit and push/pull as you work on the project! Make sure to always commit and sync before leaving the lab.
-
-## Cloning the Repository Elsewhere
-
-Now that you've got this Unity project on GitHub, you can "clone" it to a new computer:
-
-- Make sure you have GitHub Desktop + Git LFS + Unity on the computer.
-- Open GitHub Desktop and log in.
-- Click on `File => Clone Repository..." (or CTRL + SHIFT + O). Choose the repository and the local path where it should be cloned on the computer.
-- GitHub Desktop may prompt you to install Git LFS. If it does, allow it. If it doesn't, repeat the process from the previous section where we ran `git lfs install` from a terminal window.
 
 ## Notes
 
