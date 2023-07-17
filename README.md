@@ -26,8 +26,11 @@ The initial setup for a project requires a few steps, but you only have to do it
     3. Update README.md after creating.
 2. Add your Unity project to the repository:
     1. Create a new Unity project or grab an existing project.
-    2. Open up your Unity project folder in your command prompt/terminal.
-    3. Create a local git repository and connect it to a previosly created repository from Github
+    2. Check `Project Settings` in Unity project:
+       - `Version Control / Mode: “Visible Meta Files”`
+       - `Asset Serialization / Mode: “Force Text”`
+    4. Open up your Unity project folder in your command prompt/terminal.
+    5. Create a local git repository and connect it to a previosly created repository from Github
         ``` bash
         git init
         git branch -M main # if local default branch is not main
